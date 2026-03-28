@@ -6,8 +6,8 @@ from typing import Dict, Any, List
 
 import pandas as pd
 
-from sentinel.detect.rules import Incident
-from sentinel.decide.policy_engine import Decision
+from autoflight.detect.rules import Incident
+from autoflight.decide.policy_engine import Decision
 
 
 def write_markdown_report(
@@ -24,7 +24,7 @@ def write_markdown_report(
     path = Path(out_dir) / f"{ts}_{name}.md"
 
     lines = []
-    lines.append(f"# Sentinel Incident Report — {name}")
+    lines.append(f"# Autonomous Flight Incident Report — {name}")
     lines.append("")
     lines.append(f"Generated: {datetime.now().isoformat(timespec='seconds')}")
     lines.append("")

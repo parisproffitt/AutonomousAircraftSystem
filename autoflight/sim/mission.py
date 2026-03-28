@@ -6,7 +6,7 @@ from typing import Optional, List, Dict
 import numpy as np
 import pandas as pd
 
-from sentinel.sim.failure_injection import FailureConfig, apply_failures
+from autoflight.sim.failure_injection import FailureConfig, apply_failures
 
 
 @dataclass(frozen=True)

@@ -1,5 +1,5 @@
-streamlit
+fastapi
+uvicorn[standard]
 numpy
 pandas
-plotly
 scikit-learn

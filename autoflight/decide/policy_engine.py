@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import List, Optional
 
-from sentinel.detect.rules import Incident
+from autoflight.detect.rules import Incident
 
 
 @dataclass(frozen=True)
@@ -63,6 +63,6 @@ def decide(
         action="STABILIZE",
         explanation=(
             f"Elevated anomaly risk detected by ML scoring (peak risk={ml_risk_peak:.2f} >= threshold={ml_risk_threshold:.2f}). "
-            f"No rule-based envelope violations triggered, so Sentinel recommends STABILIZE and increased monitoring."
+            f"No rule-based envelope violations triggered, so the autonomy stack recommends STABILIZE and increased monitoring."
         ),
     )
