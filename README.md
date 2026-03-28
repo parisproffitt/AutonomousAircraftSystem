@@ -1,40 +1,66 @@
-# Autonomous Flight Lab
+# Autonomous Flight & Fault Detection Simulation
+Defense-inspired digital twin for jet flight fault detection with a Unity cockpit visualization.
 
-Mission autonomy sandbox inspired by defense-grade flight test tooling: Python-based telemetry simulation, anomaly detection, and policy recommendations driving a forthcoming Unity 3D cockpit/airframe visualization of a modern fighter jet.
+## Overview
+Simulates a modern fighter jet mission, injects failures, scores risk, and streams structured telemetry into a Unity 3D cockpit/airframe visualization. Built to showcase an explainable autonomy loop with measurable performance.
 
-## Highlights
-- Detects injected flight faults with targeted **99% detection certainty** (pitot drift, control degradation, turbulence bursts) at **<1s decision latency** in simulation.
-- Holds **<0.5% false-positive rate** on nominal missions while tracking altitude/airspeed envelopes.
-- Produces explainable autonomy recommendations (continue / stabilize / reroute / abort) that map directly to HUD/cockpit cues.
-- Unity 3D experience (in progress): real-time jet visualization, HUD overlays, turbulence FX, policy-driven responses, and recorder-ready demo clips.
+## Research Objective
+Deliver rapid, interpretable detection of sensor faults and control degradation so autonomy policies can be stress-tested and visualized before flight testing.
 
-## Architecture
-- **Python mission brain** (`autoflight`): telemetry sim, rule-based detection, optional ML anomaly scoring, decision policy, and JSON/Markdown export.
-- **Unity front-end (planned)**: 3D jet, HUD, incident banners, and camera rigs driven by streamed telemetry via WebSocket/HTTP.
-- **Data flow**: Python sim → detectors/ML → policy → stream to Unity → HUD/FX → captured demo video.
+## System Architecture
+- Mission Telemetry Simulation  
+- Failure Injection  
+- Rule-Based Detection + Optional ML Risk  
+- Decision & Explanation Engine  
+- JSON Export & WebSocket Streaming  
+- Unity Visualization Layer  
+Layers are modular and connected by structured data contracts.
 
-## Running the Python API
-- Install deps: `pip install -r requirements.txt`
-- Launch API server: `uvicorn server:app --reload --port 8000`
-- Health: `GET http://localhost:8000/api/health`
-- Run mission & fetch frames: `POST http://localhost:8000/api/mission/run` with JSON body:
+## Core Components
+1) Mission Simulator — 300s climb/cruise; per-tick altitude, true/measured airspeed, pitch, roll, control effectiveness, turbulence, vs_fpm, airspeed error.  
+2) Failure Injection — pitot drift (growing bias), control degradation (reduced authority), turbulence burst (short disturbance); configurable timing/magnitude.  
+3) Detection & Risk — envelope rules (roll excursions, low-alt/high-descent, airspeed disagree, control authority loss) plus optional Isolation Forest escalation. Targets: **99% detection** on injected faults, **<0.5% FPR** nominal, **<1s latency** in simulation.  
+4) Decision & Explanation — safety state + recommended action (continue/stabilize/reroute/abort) with plain-language rationale for HUD.  
+5) Data Contracts & Streaming — HTTP (`/api/mission/run`, `/api/mission/export`) and WebSocket (`/ws/telemetry` ~50 Hz) with telemetry, incidents-to-date, ML risk (optional), final decision.
+
+## Unity Visualization
+- URP jet scene with HUD/MFD overlays and camera rigs.  
+- Live telemetry drives pose, HUD metrics, incident banners, policy callouts.  
+- Failure visuals: pitot drift → HUD airspeed disagreement; control degradation → sluggish response; turbulence burst → camera shake/roll excursions.  
+- Capture 20–60s clips for nominal and faulted runs via Unity Recorder.
+
+## Quantitative Scope
+- 300s missions; 1s sim tick; ~50 Hz stream for visuals.  
+- 3 injected failure modes; configurable timing/magnitude.  
+- Risk scoring 0–1 with deterministic explanations.  
+- JSON export for offline playback; WebSocket for real-time Unity.
+
+## Real-World Applications 
+- Autonomy/fault-detection demos and safety drills.  
+- Digital-twin regression of policies before flight or hardware-in-loop.  
+- Training aids that visualize sensor disagreement and degraded control authority.
+
+## Run the Python API
+- Install deps: `pip install -r requirements.txt`  
+- Launch: `uvicorn server:app --reload --port 8000`  
+- Health: `GET http://localhost:8000/api/health`  
+- Run mission: `POST http://localhost:8000/api/mission/run`
   ```json
   {
     "mission": {"duration_s": 300, "seed": 7, "noise_std": 0.05, "base_turbulence": 0.1},
     "failure": {"type": "pitot_drift", "start_t": 90, "drift_rate": 0.03}
   }
   ```
-- Export for Unity offline playback: `POST http://localhost:8000/api/mission/export` (returns frame list with incidents/decision).
-- Live stream for Unity: connect a WebSocket client to `ws://localhost:8000/ws/telemetry` and optionally send the same JSON on connect; frames stream at ~50 Hz.
+- Export offline playback: `POST http://localhost:8000/api/mission/export` (frames + incidents + decision).  
+- Live stream: WebSocket to `ws://localhost:8000/ws/telemetry`; optionally send the same JSON on connect; streams ~50 Hz.
 
-## Unity workflow (you’ll build)
-- URP project `unity/AutonomousFlightShowcase` with Cinemachine + Recorder + Input System.
-- WebSocket/HTTP client ingests telemetry (t, altitude, airspeeds, pitch/roll, incidents, decision).
-- Visual cues: pitot drift → airspeed disagreement on HUD; control degradation → sluggish control feel; turbulence burst → camera shake/roll excursions.
-- Record 20–60s demo clips (nominal and faulted) for showcase.
+## Unity workflow
+- URP project `unity/AutonomousFlightShowcase` with Cinemachine + Recorder + Input System.  
+- WebSocket/HTTP client ingests telemetry (t, altitude, airspeeds, pitch/roll, incidents, decision).  
+- Capture clips for nominal and faulted scenarios.
 
 ## Roadmap
-- [x] Python WebSocket/HTTP bridge for live streaming.
-- [x] Offline mission JSON exporter for Unity playback.
-- [ ] Provide Unity C# stubs (TelemetryClient, FlightVisualizer, HUD controllers).
-- [ ] Finalize demo scenes.
+- [x] Python WebSocket/HTTP bridge for live streaming.  
+- [x] Offline mission JSON exporter for Unity playback.  
+- [ ] Unity C# stubs (TelemetryClient, FlightVisualizer, HUD controllers).  
+- [ ] Finalize demo scenes and visual polish.
