@@ -27,7 +27,7 @@ Modules are loosely coupled via structured data contracts.
 4) Decision & explanation — safety state + recommended action with concise rationale for HUD/cockpit cues.  
 5) Data contracts & streaming — HTTP (`/api/mission/run`, `/api/mission/export`) and WebSocket (`/ws/telemetry` ~50 Hz) include telemetry, incidents-to-date, optional ML risk, and final decision.
 
-## Unity Visualization (goal)
+## Unity Visualization 
 - URP jet scene with HUD/MFD overlays and camera rigs.  
 - Live telemetry drives pose, HUD metrics, incident banners, policy callouts.  
 - Failure visuals: pitot drift → HUD airspeed disagreement; control degradation → sluggish response; turbulence burst → camera shake/roll excursions.  
@@ -39,7 +39,7 @@ Modules are loosely coupled via structured data contracts.
 - Risk scoring 0–1 with deterministic explanations.  
 - JSON export for offline playback; WebSocket for real-time Unity.
 
-## How it can be used
+## Real-World Applications
 - Autonomy/fault-detection demos and safety drills.  
 - Digital-twin regression of policies before flight or hardware-in-loop.  
 - Training aids that visualize sensor disagreement and degraded control authority.
@@ -59,7 +59,7 @@ Modules are loosely coupled via structured data contracts.
 - Live stream: WebSocket to `ws://localhost:8000/ws/telemetry`; optionally send the same JSON on connect; streams ~50 Hz.
 - CLI export: `python export_mission.py --out exports/mission_export.json --failure_type control_degradation`
 
-## Unity workflow (to build)
+## Unity Workflow 
 - URP project `unity/AutonomousFlightShowcase` with Cinemachine + Recorder + Input System.  
 - WebSocket/HTTP client ingests telemetry (t, altitude, airspeeds, pitch/roll, incidents, decision).  
 - Capture clips for nominal and faulted scenarios.
