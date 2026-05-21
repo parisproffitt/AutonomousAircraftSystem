@@ -222,7 +222,7 @@ The Streamlit frontend provides:
 
 The console calls `autoflight/pipeline.py` and does not embed detection thresholds internally, preserving modularity.
 
-<img width="500" height="800" alt="Mission Configuration" src="images/MissionConfig.png" />
+<img width="400" height="800" alt="Mission Configuration" src="images/MissionConfig.png" />
 
 ---
 
