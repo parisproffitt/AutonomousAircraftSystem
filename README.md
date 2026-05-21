@@ -2,7 +2,7 @@
 
 A rule-based and ML-assisted safety assurance prototype integrated with a Streamlit mission console. Simulates autonomous flight telemetry, injects representative failure modes, and produces explainable safety states and recovery recommendations for human-in-the-loop decision support.
 
-<img width="350" height="300" alt="Load Screen After Clicking Run" src="/Users/parisproffitt/Library/Mobile Documents/com~apple~CloudDocs/Projects/Sentinel/LoadScreen.png" />
+<img width="350" height="300" alt="Load Screen After Clicking Run" src="images/LoadScreen.png" />
 
 > **NON-OPERATIONAL** — Simulated telemetry only. No aircraft integration, no actuator commands, no classified system replication.
 
