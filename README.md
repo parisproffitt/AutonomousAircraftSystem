@@ -130,7 +130,7 @@ In pytest comparison (same seed), fault-injected missions produced **higher peak
 
 > Note: ML provides risk scoring and escalation hints; it does not command actuators or autopilot modes.
 
-<img width="1000" height="1000" alt="ML Settings" src="images/MLSettings.png" />
+<img width="500" height="600" alt="ML Settings" src="images/MLSettings.png" />
 
 ---
 
@@ -222,7 +222,7 @@ The Streamlit frontend provides:
 
 The console calls `autoflight/pipeline.py` and does not embed detection thresholds internally, preserving modularity.
 
-<img width="900" height="1000" alt="Mission Configuration" src="images/MissionConfig.png" />
+<img width="500" height="600" alt="Mission Configuration" src="images/MissionConfig.png" />
 
 ---
 
