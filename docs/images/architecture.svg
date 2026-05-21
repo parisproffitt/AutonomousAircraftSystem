@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 280" role="img" aria-label="Autonomous flight failure detection pipeline">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111b2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="55%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect width="920" height="280" rx="12" fill="url(#bg)"/>
+  <rect x="1" y="1" width="918" height="278" rx="11" fill="none" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="460" y="32" text-anchor="middle" fill="url(#accent)" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Failure detection pipeline</text>
+  <text x="460" y="50" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Simulated telemetry, rules, ML risk, recovery policy</text>
+
+  <!-- Row 1: ingest -->
+  <g filter="url(#glow)">
+    <rect x="24" y="72" width="118" height="52" rx="8" fill="#111b2e" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="83" y="94" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Mission</text>
+    <text x="83" y="110" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Simulator</text>
+  </g>
+
+  <line x1="142" y1="98" x2="168" y2="98" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="168" y="72" width="118" height="52" rx="8" fill="#111b2e" stroke="#38bdf8" stroke-width="1.2"/>
+    <text x="227" y="94" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Failure</text>
+    <text x="227" y="110" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Injection</text>
+  </g>
+
+  <line x1="286" y1="98" x2="312" y2="98" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="312" y="72" width="130" height="52" rx="8" fill="#111b2e" stroke="#818cf8" stroke-width="1.2"/>
+    <text x="377" y="94" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Feature</text>
+    <text x="377" y="110" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Engineering</text>
+  </g>
+
+  <!-- Branch to detect -->
+  <line x1="442" y1="98" x2="468" y2="98" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="468" y="72" width="108" height="52" rx="8" fill="#111b2e" stroke="#22c55e" stroke-width="1.2"/>
+    <text x="522" y="94" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Rule</text>
+    <text x="522" y="110" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Detection</text>
+  </g>
+
+  <!-- ML branch (down from features) -->
+  <path d="M377,124 L377,148 L522,148 L522,124" fill="none" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <g>
+    <rect x="468" y="156" width="108" height="52" rx="8" fill="#111b2e" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="522" y="178" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">ML Risk</text>
+    <text x="522" y="194" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Scoring</text>
+  </g>
+  <text x="400" y="142" fill="#64748b" font-family="Inter, system-ui, sans-serif" font-size="9">advisory only</text>
+
+  <!-- Diagnosis from rules -->
+  <line x1="576" y1="98" x2="602" y2="98" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="602" y="72" width="100" height="52" rx="8" fill="#111b2e" stroke="#a78bfa" stroke-width="1.2"/>
+    <text x="652" y="94" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Root</text>
+    <text x="652" y="110" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Cause</text>
+  </g>
+
+  <!-- Policy merges rules + ML -->
+  <line x1="522" y1="208" x2="522" y2="228" stroke="#475569" stroke-width="1.5"/>
+  <line x1="652" y1="124" x2="722" y2="180" stroke="#475569" stroke-width="1.5"/>
+  <line x1="522" y1="228" x2="722" y2="228" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="722" y="196" width="120" height="52" rx="8" fill="#111b2e" stroke="#f97316" stroke-width="1.2"/>
+    <text x="782" y="218" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Policy</text>
+    <text x="782" y="234" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">Engine</text>
+  </g>
+
+  <line x1="842" y1="222" x2="858" y2="222" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="722" y="72" width="174" height="52" rx="8" fill="#111b2e" stroke="#c084fc" stroke-width="1.2"/>
+    <text x="809" y="94" text-anchor="middle" fill="#f1f5f9" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600">Explain &amp; Report</text>
+    <text x="809" y="110" text-anchor="middle" fill="#94a3b8" font-family="Inter, system-ui, sans-serif" font-size="10">JSON ù Markdown</text>
+  </g>
+
+  <line x1="782" y1="196" x2="809" y2="124" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- State machine badge -->
+  <rect x="722" y="156" width="120" height="28" rx="6" fill="#0f172a" stroke="#1e293b"/>
+  <text x="782" y="175" text-anchor="middle" fill="#64748b" font-family="Inter, system-ui, sans-serif" font-size="9">NOMINAL ù DEGRADED ù CRITICAL ù EMERGENCY</text>
+
+  <!-- Legend -->
+  <circle cx="40" cy="252" r="4" fill="#22c55e"/>
+  <text x="52" y="255" fill="#64748b" font-family="Inter, system-ui, sans-serif" font-size="9">Rules (authority)</text>
+  <circle cx="160" cy="252" r="4" fill="#f59e0b"/>
+  <text x="172" y="255" fill="#64748b" font-family="Inter, system-ui, sans-serif" font-size="9">ML (advisory)</text>
+  <circle cx="280" cy="252" r="4" fill="#f97316"/>
+  <text x="292" y="255" fill="#64748b" font-family="Inter, system-ui, sans-serif" font-size="9">Human-in-the-loop outputs</text>
+</svg>
