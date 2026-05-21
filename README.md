@@ -71,10 +71,6 @@ The pipeline is organized into the following stages:
 
 Each layer is modular and loosely coupled, allowing independent testing and future integration of alternate estimators or data sources.
 
-<p align="center">
-  <img src="docs/images/architecture.svg" alt="Assurance pipeline architecture" width="920"/>
-</p>
-
 ---
 
 ## Core Components
