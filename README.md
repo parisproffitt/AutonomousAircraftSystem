@@ -2,11 +2,7 @@
 
 A rule-based and ML-assisted safety assurance prototype integrated with a Streamlit mission console. Simulates autonomous flight telemetry, injects representative failure modes, and produces explainable safety states and recovery recommendations for human-in-the-loop decision support.
 
-<!-- SCREENSHOT: Main Mission Control after running Compound Failure or Pitot Drift — HUD metrics, telemetry grid, incidents panel visible -->
-<!-- Save as: docs/images/screenshot_main.png -->
-<p align="center">
-  <img src="docs/images/screenshot_main.png" alt="Mission Control — main results view" width="920"/>
-</p>
+<img width="350" height="300" alt="Load Screen After Clicking Run" src="/Users/parisproffitt/Library/Mobile Documents/com~apple~CloudDocs/Projects/Sentinel/LoadScreen.png" />
 
 > **NON-OPERATIONAL** — Simulated telemetry only. No aircraft integration, no actuator commands, no classified system replication.
 
